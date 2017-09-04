@@ -1,2 +1,18 @@
-<h1>Products#new</h1>
-<p>Find me in app/views/products/new.html.erb</p>
+<h1>New Product</h1>
+<%= form_for @product, url: { action: "create" } do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  
+  <%= f.label :price %>
+  <%= f.number_field :price %>
+  
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+  
+  <%= f.label :category %>
+  <%= f.collection_select :category_id, Category.all, :id, :name, prompt: true %>
+
+  <button type="button">Add Photo</button>
+
+  <%= f.submit "Create Product" %>
+<% end %>
