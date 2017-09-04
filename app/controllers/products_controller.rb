@@ -12,6 +12,13 @@ class ProductsController < ApplicationController
   end
 
   def create
+    @product = Product.new(product_params)
+    if @product.save
+      flash[:success] = 'Product successfully created.'
+      redirect_to products_path
+    else
+      render new
+    end
   end
 
   def edit
@@ -19,5 +26,17 @@ class ProductsController < ApplicationController
   end
 
   def update
+  end
+
+  def destroy
+    Product.find(params[:id]).destroy
+    flash[:success] = 'Product successfully deleted.'
+    redirect_to products_path
+  end
+
+  private
+
+  def product_params
+    params.require(:product).permit(:name, :price, :description, :category_id)
   end
 end

@@ -1,3 +1,4 @@
 <li>
-  <%= product.name %>
+  <%= link_to product.name, product %>
+  <%= button_to 'Delete', product, { method: :delete, form_class: "delete-button" } %>
 </li>
