@@ -7,4 +7,9 @@ class User < ApplicationRecord
     uniqueness: { case_sensitive: false },
     with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i,
     length: { maximum: 255 }
+  has_secure_password
+  validates :password,
+    presence: true,
+    length: { minimum: 8 }
+  validates :admin, presence: true
 end
