@@ -10,6 +10,34 @@ class User < ApplicationRecord
   has_secure_password
   validates :password,
     presence: true,
-    length: { minimum: 8 }
+    length: { minimum: 8 },
+    allow_nil: true
   validates :admin, presence: true
+  attr_accessor :remember_token
+
+  class << self
+    def create_hash(string)
+      BCrypt::Password.create(string)
+    end
+
+    def generate_token
+      SecureRandom.urlsafe_base64
+    end
+  end
+
+  def remember
+    self.remember_token = User.generate_token
+    update_attribute(:remember_digest, User.create_hash(remember_token))
+  end
+
+  def forget
+    update_attribute(:remember_digest, nil)
+  end
+
+  def authenticated?(attribute, token)
+    digest = self["#{attribute}_digest"] # to symbol? send?
+    # digest = send("#{attribute}_digest")
+    return false if digest.nil?
+    BCrypt::Password.new(digest).is_password?(token)
+  end
 end
