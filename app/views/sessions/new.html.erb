@@ -1,5 +1,18 @@
 <h1>Log In</h1>
 
 <%= form_for :session, url: {action: 'create'} do |f| %>
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+
+  <%= f.label :remember_me do %>
+    <%= f.check_box :remember_me %>
+    Remember me on this computer
+  <% end %>
+
+  <%= f.submit "Log In" %>
 <% end %>
+
 <p>Don't have an account? <%= link_to "Click here to sign up!", signup_path %></p>

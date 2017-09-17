@@ -5,22 +5,25 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.admin = false
+    order = Order.new(user: @user, status: 'IN_PROGRESS')
+    cart = CurrentOrder.new(user: @user, order: order)
     # Create new order
     # Create new cart
     if @user.save
-      # @order.save
-      # @cart.save
-      flash[:success] = 'User successfully created.'
-      redirect_to root_path
+      order.save
+      cart.save
+      log_in @user
+      flash[:success] = 'Account successfully created.'
+      redirect_to root_url
     else
-      render new
+      render 'new'
     end
   end
 
   private
 
   def user_params
-    params[:admin] = false
-    params.require(:user).permit(:email, :password, :admin)
+    params.require(:user).permit(:email, :password)
   end
 end

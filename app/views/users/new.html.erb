@@ -1,2 +1,15 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<h1>Sign Up</h1>
+<%= form_for @user do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+
+  <%= f.label :confirm_password, "Confirm Password" %>
+  <%= f.password_field :confirm_password %>
+
+  <%= f.submit "Create Account" %>
+<% end %>

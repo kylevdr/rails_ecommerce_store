@@ -4,7 +4,7 @@ class Order < ApplicationRecord
   has_many :order_items, dependent: :destroy
   validates  :status,
     presence: true, 
-    inclusion: { in: ['IN_PROGESS', 'ORDERED', 'FULFILLED', 'CANCELLED'] }
+    inclusion: { in: ['IN_PROGRESS', 'ORDERED', 'FULFILLED', 'CANCELLED'] }
   # date_placed
   # date_fulfilled
 end
