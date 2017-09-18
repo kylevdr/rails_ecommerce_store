@@ -3,7 +3,7 @@
 Users can:
 - View products
 - Create accounts
-- Log in
+- Log in and log out
 - Add items to their cart
 
 Admins can:
