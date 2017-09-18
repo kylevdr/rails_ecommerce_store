@@ -2,4 +2,12 @@
 <p><b>Price: </b><%= number_to_currency(@product.price.to_f / 100) %></p>
 <p><b>Category: </b><%= @product.category.name %></p>
 <p><b>Description: </b><%= @product.description %></p>
+<%= form_for(OrderItem.new) do |f| %>
+  <%= f.hidden_field :product_id, value: @product.id %>
+  
+  <%= f.label :quantity %>
+  <%= f.number_field :quantity %>
+
+  <%= f.submit "Add To Cart" %>
+<% end %>
 <%= link_to 'All Products', products_path %>

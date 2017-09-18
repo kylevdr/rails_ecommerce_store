@@ -2,7 +2,11 @@
   <ul>
     <li><%= link_to 'Home', root_path %></li>
     <% if logged_in? %>
-      <li><%= link_to 'Cart', '#' %></li>
+      <% if current_user.cart.order_items.count > 0 %>
+        <li><%= link_to "Cart (#{current_user.cart.order_items.count})", '#' %></li>
+      <% else %>
+        <li><%= link_to "Cart", '#' %></li>
+      <% end %>
       <li><%= link_to 'Log Out', logout_path, method: :delete %></li>
     <% else %>
       <li><%= link_to 'Log In', login_path %></li>

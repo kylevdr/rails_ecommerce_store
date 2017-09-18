@@ -8,8 +8,6 @@ class UsersController < ApplicationController
     @user.admin = false
     order = Order.new(user: @user, status: 'IN_PROGRESS')
     cart = CurrentOrder.new(user: @user, order: order)
-    # Create new order
-    # Create new cart
     if @user.save
       order.save
       cart.save

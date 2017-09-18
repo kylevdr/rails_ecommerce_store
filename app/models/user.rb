@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_many :orders
   has_one :current_order # solely used for finding cart
-  has_one :cart, through: :current_order, source: :order, dependent: :destroy
+  has_one :cart, through: :current_order, source: :order
   validates :email,
     presence: true,
     uniqueness: { case_sensitive: false },
