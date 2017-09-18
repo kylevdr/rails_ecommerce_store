@@ -1,4 +1,4 @@
-# Rails eCommerce Store
+# Rails E-commerce Store
 
 Users can:
 - View products
