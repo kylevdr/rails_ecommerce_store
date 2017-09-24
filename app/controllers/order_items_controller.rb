@@ -24,6 +24,9 @@ class OrderItemsController < ApplicationController
   end
 
   def destroy
+    OrderItem.find(params[:id]).destroy
+    flash[:success] = 'Item successfully removed from cart'
+    redirect_to cart_path
   end
 
   private

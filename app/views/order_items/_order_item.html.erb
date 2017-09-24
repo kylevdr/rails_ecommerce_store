@@ -1,0 +1,8 @@
+<li>
+  <%= link_to order_item.product.name, order_item.product %>
+  <%= order_item.product.price %>
+  <%= order_item.quantity %>
+  <% if order_item.order.user == current_user %>
+    <%= button_to 'Remove', order_item, { method: :delete, form_class: "delete-button" } %>
+  <% end %>
+</li>
