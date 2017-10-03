@@ -1,5 +1,5 @@
 class CartsController < ApplicationController
-  # before action - check if logged in and redirect if not
+  before_action :require_login
   def show
     @cart = current_user.cart
   end

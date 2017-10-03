@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  before_action :require_admin, only: [:new, :create, :edit, :update, :destroy]
+  
   def show
     @product = Product.find(params[:id])
   end
